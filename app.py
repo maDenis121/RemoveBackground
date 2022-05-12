@@ -10,3 +10,5 @@ def hoola():
 
 def prueba2():
     return 69
+def prueba1():
+    return 5
