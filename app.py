@@ -6,4 +6,4 @@ def hello():
     return "Hello, World!"
 
 def hoola():
-    return 1
+    return 2
