@@ -7,3 +7,6 @@ def hello():
 
 def hoola():
     return 2
+
+def prueba1():
+    return 5
