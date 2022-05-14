@@ -1,11 +1,10 @@
-<<<<<<< Updated upstream
 from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route("/")
 def index():
     return render_template("main.html")
-=======
+
 #Importar parquetes necesarios
 #import os
 import cv2
@@ -37,4 +36,3 @@ def eliminarFondo():
 
 
 eliminarFondo()
->>>>>>> Stashed changes
