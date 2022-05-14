@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC >
+<html> 
+	<head> 
+		<title>Remove Background</title> 
+		<meta http-equiv="content-type" content="text/hyml"; charset="utf-8">
+        <style type="text/css">
+            html {font-family: Verdana, sans-serif}
+            body {margin: auto; height: 100%; width: 60%;
+                display: flex; justify-content: center; align-items: center}
+        </style>
+	</head> 
+	<body> 
+		<form name="imageForm" method="post" enctype="multipart/form-data" action="procesar.php"> 
+			<h2> Remove Background </h2>
+            
+            <ul>
+                <li>Imagen original:
+                <input type="file" name="imagenOriginal" accept="image/png, image/gif, image/jpeg">
+                </li>
+                
+                <li>Nuevo fondo:
+                <input type="file" name="imagenFondo" accept="image/png, image/gif, image/jpeg">
+                </li>
+			</ul>
+            <hr/>
+            <br/>
+			
+            Usar nuevo fondo: <input type="checkbox" name="chkUsarNuevoFondo" checked/>
+			
+			<br/><br/>
+            
+            Tipo de fondo: 
+            <select name="selectTipoFondo">
+                <option value="rellena">Rellena</option>
+                <option value="ajusta">Ajusta</option>
+                <option value="estira">Estira</option>
+                <option value="mosaico">Mosaico</option>
+                <option value="centra">Centra</option>
+                <option value="expande">Expande</option>
+            </select>
+            
+			<br/><br/>
+			
+			<input type="submit" /> 
+		</form>
+	</body> 
+</html>
