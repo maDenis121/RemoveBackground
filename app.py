@@ -19,7 +19,7 @@ def handle_data():
     selectTipoFondo = request.form['selectTipoFondo']
     # quitar fondo, meter nuevo fondo
     pass
-    #return render_template("resultado.html", rutaNuevaImagen)
+    #return render_template("resultado.html", rutaImagen=rutaNuevaImagen)
 
 #index()
 
