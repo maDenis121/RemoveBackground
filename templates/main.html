@@ -10,7 +10,7 @@
         </style>
 	</head> 
 	<body> 
-		<form name="imageForm" method="post" enctype="multipart/form-data" action="procesar.php"> 
+		<form name="imageForm" method="post" enctype="multipart/form-data" action="{{ url_for('handle_data') }}"> 
 			<h2> Remove Background </h2>
             
             <ul>

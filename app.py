@@ -1,5 +1,5 @@
 #Importar parquetes necesarios
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 import cv2 
@@ -9,7 +9,16 @@ import numpy as np
 def index():
     return render_template("main.html")
 
+@app.route('/handle_data', methods=['POST'])
+def handle_data():
+    imagenOriginal = request.files['imagenOriginal']
+    imagenFondo = request.files['imagenFondo']
+    chkUsarNuevoFondo = request.form['chkUsarNuevoFondo']
+    selectTipoFondo = request.form['selectTipoFondo']
+    # quitar fondo, meter nuevo fondo
+    return render_template("resultado.html", rutaNuevaImagen)
 
+index()
 
 
 
@@ -64,8 +73,7 @@ def eliminar_fondo():
     cambiar_fondo.load_pascalvoc_model("deeplabv3_xception_tf_dim_ordering_tf_kernels.h5")
     cambiar_fondo.color_bg("imgs/01.jpg", colors = (0, 255, 0), output_image_name = "output/01_fondo_verde.jpg", detect = "person")
 
+#quita_fondo()
 
-eliminar_fondo()
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
