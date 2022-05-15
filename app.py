@@ -64,8 +64,8 @@ def quita_fondo():
 
 
 
-import pixellib
-from pixellib.tune_bg import alter_bg 
+#import pixellib
+#from pixellib.tune_bg import alter_bg 
 
 
 def eliminar_fondo():
