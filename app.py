@@ -15,7 +15,7 @@ def index():
 
 def quita_fondo():
     #leemos la imagen
-    img = cv2.imread("persona.jpg")
+    img = cv2.imread("prueba.png")
     
     #Mostramos la imagen
     cv2.imshow("imagen original", img)
@@ -51,12 +51,12 @@ def quita_fondo():
 
 
     #mostramos el resultado
-    cv2.imshow("res", mask)
+    cv2.imshow("res", new_img)
 
 
 
-#import pixellib
-#from pixellib.tune_bg import alter_bg  HACE FALTA TENSORFLOW==2.6.0
+import pixellib
+from pixellib.tune_bg import alter_bg 
 
 
 def eliminar_fondo():
@@ -65,7 +65,7 @@ def eliminar_fondo():
     cambiar_fondo.color_bg("imgs/01.jpg", colors = (0, 255, 0), output_image_name = "output/01_fondo_verde.jpg", detect = "person")
 
 
-quita_fondo()
+eliminar_fondo()
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
