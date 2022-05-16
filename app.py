@@ -31,7 +31,7 @@ CANNY_THRESH_1 = 10
 CANNY_THRESH_2 = 200 
 MASK_DILATE_ITER = 10 
 MASK_ERODE_ITER = 10 
-MASK_COLOR = (1.0,1.0,1.0) # In BGR format 
+MASK_COLOR = (.0,.0,.0) # In BGR format 
 
 
 
@@ -72,6 +72,7 @@ def prueba3():
     mask = np.zeros(bordes.shape) 
     cv2.fillConvexPoly(mask, max_contour[0], (255))
     cv2.imshow("mascara", mask)
+    cv2.imwrite("mascara.png", mask)
 
     #Suavizado de la máscara, blur
     mask = cv2.dilate(mask, None, iterations=MASK_DILATE_ITER) 
@@ -97,9 +98,15 @@ def prueba3():
     wi, hi, channelsi = final.shape
     print(wi,hi)
     fondo_res = cv2.resize(fondo, dsize=(hi, wi), interpolation=cv2.INTER_CUBIC)
+
+    #posible opción
+    #fondo_res = cv2.subtract(fondo_res, final)
+    #cv2.imshow("fondo",fondo_res) # Con la gilipollez queda guapo
+    mascara = cv2.imread("mascara.png")
+    fondo_res = cv2.subtract(fondo_res, mascara)
     cv2.imshow("fondo",fondo_res)
 
-    res = cv2.addWeighted(final, 0.5, fondo_res, 0.5, 0.0)
+    res = cv2.addWeighted(final, 1, fondo_res, 1, 0.0)
 
     cv2.imshow("final final", res)
 
