@@ -1,11 +1,11 @@
 #Importar parquetes necesarios
 from flask import Flask, render_template, request
-app = Flask(__name__)
-
 import cv2 
 import numpy as np
 import time
 from matplotlib import pyplot as plt
+
+app = Flask(__name__)
 
 @app.route("/")
 def index():
@@ -20,8 +20,6 @@ def handle_data():
     # quitar fondo, meter nuevo fondo
     pass
     #return render_template("resultado.html", rutaImagen=rutaNuevaImagen)
-
-#index()
 
 
 #Constantes:
@@ -158,7 +156,7 @@ def prueba3():
 
     
 #quita_fondo()
-prueba3()
+#prueba3()
 
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
