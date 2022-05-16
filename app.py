@@ -2,8 +2,11 @@
 from flask import Flask, render_template, request
 import cv2 
 import numpy as np
-import time
-from matplotlib import pyplot as plt
+
+
+
+
+
 
 app = Flask(__name__)
 
@@ -31,56 +34,7 @@ MASK_ERODE_ITER = 10
 MASK_COLOR = (1.0,1.0,1.0) # In BGR format 
 
 
-def quita_fondo():
-    #leemos la imagen
-    img = cv2.imread("./imgs/01.jpg")
-    
-    #Mostramos la imagen
-    cv2.imshow("imagen original", img)
 
-    #Convertimos a escala de grises
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-    #Mostramos la imagen gris
-    cv2.imshow("imagen gris", gray)
-
-    #Generamos la imagen binaria
-    _,tresh = cv2.threshold(gray, 40, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
-
-    #Mostramos el resultado
-    cv2.imshow("imagen binaria", tresh)
-
-    #Detección de contornos
-    img_contours = cv2.findContours(tresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[-2]
-    img_contours = sorted(img_contours, key=cv2.contourArea)
-
-    for i in img_contours:
-            if cv2.contourArea(i) > 100:
-                break
-
-    #Generar máscara:
-    mask = np.zeros(img.shape[:2], np.uint8)
-
-    #Dibujar contornos
-    cv2.drawContours(mask, [i], -1, 255, -1)
-
-    #Substracción del fondo
-    new_img = cv2.bitwise_and(img, img, mask=mask)
-
-
-    #mostramos el resultado
-    cv2.imshow("res", new_img)
-
-
-
-#import pixellib
-#from pixellib.tune_bg import alter_bg 
-
-
-#def eliminar_fondo():
-    #cambiar_fondo = alter_bg()
-    #cambiar_fondo.load_pascalvoc_model("deeplabv3_xception_tf_dim_ordering_tf_kernels.h5")
-    #cambiar_fondo.color_bg("imgs/01.jpg", colors = (0, 255, 0), output_image_name = "output/01_fondo_verde.jpg", detect = "person")
 
 
 def prueba3():
@@ -135,28 +89,24 @@ def prueba3():
     cv2.imwrite("prueba.png",masked)
 
     fondo = cv2.imread("fondo.jpg")
+    #fondo = Image.open("fondo.jpg")
     final = cv2.imread("prueba.png")
-    wf, hf, channelsf = fondo.shape
+
+
+ 
     wi, hi, channelsi = final.shape
-    #print(w,h,channels)
-    aspRatf = wf/hf
-    aspRati = wi/hi
-    #print(aspRatf, aspRati)
-    #res = cv2.add(masked, final)
-    #res = cv2.addWeighted(final, 0.5, fondo, 0.5, 0.0)
-    factor =0
-    if aspRati > aspRatf:
-        factor = wi/wf
+    print(wi,hi)
+    fondo_res = cv2.resize(fondo, dsize=(hi, wi), interpolation=cv2.INTER_CUBIC)
+    cv2.imshow("fondo",fondo_res)
 
-    else:
-        factor =hi/hf
-    print(factor)
-    imEsc = cv2.resize(fondo, None, factor, factor)
-    cv2.imshow("final", res)
+    res = cv2.addWeighted(final, 0.5, fondo_res, 0.5, 0.0)
 
+    cv2.imshow("final final", res)
+
+#
     
 #quita_fondo()
-#prueba3()
+prueba3()
 
-#cv2.waitKey(0)
-#cv2.destroyAllWindows()
+cv2.waitKey(0)
+cv2.destroyAllWindows()
