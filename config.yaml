@@ -1,0 +1,4 @@
+azure_storage_connectionstring: "DefaultEndpointsProtocol=https;AccountName=removebackgroundblob;AccountKey=KmFSwzfp5KCdXpU75u1hDzjiXaGVWTrwvL/GUlCbvj7q7UoNQOegtrRu2K2y07dmJALZ/+SCUhIdlMXYcR9PHQ==;EndpointSuffix=core.windows.net"
+images_container_name: "images"
+download_folder: "D:/Descarregues/imatges2"
+source_folder: "D:/Descarregues"
