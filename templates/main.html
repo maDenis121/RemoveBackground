@@ -10,30 +10,19 @@
         </style>
 	</head> 
 	<body> 
-		<form name="imageForm" method="post" enctype="multipart/form-data" action="{{ url_for('handle_data') }}"> 
+		<form name="imageForm" method="post" enctype="multipart/form-data" action="#"> 
 			<h2> Remove Background </h2>
             
             <ul>
                 <li>Imagen original:
-                    <input type="file" name="imagenOriginal" accept="image/png, image/gif, image/jpeg">
+                    <input type="file" name="imagenOriginal" accept="image/jpeg, image/png" required>
                 </li>
                 
                 <li>Nuevo fondo:
-                    <input type="file" name="imagenFondo" accept="image/png, image/gif, image/jpeg">
+                    <input type="file" name="imagenFondo" accept="image/jpeg, image/png" required>
                 </li>
 			</ul>
             <hr/>
-            <br/>
-            
-            Tipo de fondo: 
-            <select name="selectTipoFondo">
-                <option value="rellena">Rellena</option>
-                <option value="ajusta">Ajusta</option>
-                <option value="estira">Estira</option>
-                <option value="mosaico">Mosaico</option>
-                <option value="centra">Centra</option>
-                <option value="expande">Expande</option>
-            </select>
             
 			<br/><br/>
 			
