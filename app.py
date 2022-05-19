@@ -23,7 +23,7 @@ def index():
         imagenFondoFilename = secure_filename(imagenFondo.filename)
         imagenOriginal.save(imagenOriginalFilename)
         imagenFondo.save(imagenFondoFilename)
-        nombreNuevaImagen = quitar_fondo(imagenOriginalFilename, imagenFondoFilename, app.config['IMAGE_FOLDER'])
+        nombreNuevaImagen = quitar_fondo(imagenOriginalFilename, imagenFondoFilename)
         session["rutaNuevaImagen"] = nombreNuevaImagen;
         return redirect(url_for("resultado"))
     else:
