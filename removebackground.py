@@ -87,7 +87,7 @@ def quitar_fondo(imagenOriginal, imagenFondo, path):
 
     fileName = datetime.now().strftime("%Y%m%d%m_%H%M%S") + ".png"
     fullPath = fileName
-    cv2.imwrite(fullPath, res)
+    cv2.imwrite(fileName, res)
     #with open(fullPath, "rb") as data:
         #upload_file(fileName, data);
 

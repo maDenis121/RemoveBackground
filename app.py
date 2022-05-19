@@ -7,7 +7,7 @@ from upload import download_file
 app = Flask(__name__)
 app.secret_key = "removebackground"
 
-app.config['IMAGE_FOLDER'] = "/imagenes/"
+app.config['IMAGE_FOLDER'] = "/static/"
 os.chdir(os.path.dirname(__file__) + app.config['IMAGE_FOLDER'])
 
 print(os.getcwd())
@@ -24,7 +24,7 @@ def index():
         imagenOriginal.save(imagenOriginalFilename)
         imagenFondo.save(imagenFondoFilename)
         nombreNuevaImagen = quitar_fondo(imagenOriginalFilename, imagenFondoFilename, app.config['IMAGE_FOLDER'])
-        session["rutaNuevaImagen"] = "../imagenes/" + nombreNuevaImagen;
+        session["rutaNuevaImagen"] = nombreNuevaImagen;
         return redirect(url_for("resultado"))
     else:
         return render_template("main.html")
