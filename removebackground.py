@@ -12,22 +12,20 @@ MASK_DILATE_ITER = 10
 MASK_ERODE_ITER = 10 
 MASK_COLOR = (.0,.0,.0) # In BGR format 
 
-def quitar_fondo(imagenOriginal, imagenFondo, path):
+def quitar_fondo(imagenOriginal, imagenFondo):
 
     #Leemos la imagen y la pasamos a gris
     img = cv2.imread(imagenOriginal)
-    #cv2.imshow("original", img)
+
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     
     #Detección de bordes
     bordes = cv2.Canny(gray, CANNY_THRESH_1, CANNY_THRESH_2)
-    #cv2.imshow("bordes1", bordes)
-
+    
     bordes = cv2.dilate(bordes, None)
-    #cv2.imshow("bordes2", bordes)
 
     bordes = cv2.erode(bordes, None)
-    cv2.imshow("bordes3", bordes)
+    
 
     #Encontrar contornos en los bordes, ordenados por el área
     contour_info = [] 
@@ -46,7 +44,6 @@ def quitar_fondo(imagenOriginal, imagenFondo, path):
     #Máscara negra, polígono blanco
     mask = np.zeros(bordes.shape) 
     cv2.fillConvexPoly(mask, max_contour[0], (255))
-    #cv2.imshow("mascara", mask)
     cv2.imwrite("mascara.png", mask)
 
     #Suavizado de la máscara, blur
@@ -61,29 +58,30 @@ def quitar_fondo(imagenOriginal, imagenFondo, path):
     img  = img.astype('float32')/255.0     # Más facil para hacer el blend 
 
     masked = (mask_stack * img) + ((1-mask_stack) * MASK_COLOR) # Blend 
-    masked = (masked * 255).astype('uint8')      # Convert back to 8-bit
+    masked = (masked * 255).astype('uint8')      # Converitr el negro en colores de 8 bits
     cv2.imwrite(imagenOriginal,masked)
 
+    #Leemos la imágen anterior y la imagen de fondo 
     fondo = cv2.imread(imagenFondo)
-    #fondo = Image.open("fondo.jpg")
     final = cv2.imread(imagenOriginal)
 
 
- 
+    #Obtenemos las propiedades de la imagen final y reescalamos el fondo:
     wi, hi, channelsi = final.shape
-    print(wi,hi)
     fondo_res = cv2.resize(fondo, dsize=(hi, wi), interpolation=cv2.INTER_CUBIC)
 
     #posible opción
     #fondo_res = cv2.subtract(fondo_res, final)
     #cv2.imshow("fondo",fondo_res) # Con la gilipollez queda guapo
+
+    #Restamos al fondo la máscara 
     mascara = cv2.imread("mascara.png")
     fondo_res = cv2.subtract(fondo_res, mascara)
-    #cv2.imshow("fondo",fondo_res)
 
+    #Combinamos la imagen tratada al principio con el fondo que acabamos de obtener 
     res = cv2.addWeighted(final, 1, fondo_res, 1, 0.0)
 
-    cv2.imshow("final final", res)
+    #cv2.imshow("final final", res)
 
     fileName = datetime.now().strftime("%Y%m%d%m_%H%M%S") + ".png"
     fullPath = fileName
@@ -92,7 +90,3 @@ def quitar_fondo(imagenOriginal, imagenFondo, path):
         #upload_file(fileName, data);
 
     return fileName;
-
-
-#cv2.waitKey(0)
-#cv2.destroyAllWindows()
