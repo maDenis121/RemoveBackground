@@ -9,24 +9,38 @@
                 display: flex; justify-content: center; align-items: center}
         </style>
 	</head> 
-	<body> 
-		<form name="imageForm" method="post" enctype="multipart/form-data" action="#"> 
-			<h2> Remove Background </h2>
+	<body>
+        <table>
+            <tr>
+                <td>
+                    <form name="imageForm" method="post" enctype="multipart/form-data" action="#"> 
+                        <h2> Remove Background </h2>
+                        
+                        <ul>
+                            <li>Imagen original:
+                                <input type="file" name="imagenOriginal" accept="image/jpeg, image/png" required>
+                            </li>
+                            
+                            <li>Nuevo fondo:
+                                <input type="file" name="imagenFondo" accept="image/jpeg, image/png" required>
+                            </li>
+                        </ul>
+                        <hr/>
+                        
+                        <br/><br/>
+                        
+                        <input type="submit" /> 
             
-            <ul>
-                <li>Imagen original:
-                    <input type="file" name="imagenOriginal" accept="image/jpeg, image/png" required>
-                </li>
-                
-                <li>Nuevo fondo:
-                    <input type="file" name="imagenFondo" accept="image/jpeg, image/png" required>
-                </li>
-			</ul>
-            <hr/>
-            
-			<br/><br/>
-			
-			<input type="submit" /> 
-		</form>
+                        
+                    </form>
+                </td>
+                <td style="padding-left: 200px;">
+                    <h4>Chat de ayuda</h4>
+                    <iframe src='https://webchat.botframework.com/embed/removebackgroundbot?s=zHPHO_Gn-Pk.53QqqoMsDvSEnXswSQ1pSmLr2wLslksyXJbfQK1RnZs'
+                            style='min-width: 300px; width: 100%; min-height: 400px;'></iframe>
+                </td>
+            </tr>
+        </table>
+		
 	</body> 
 </html>

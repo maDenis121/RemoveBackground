@@ -12,10 +12,21 @@
 	<body>
         <table>
             <tr>
-                <td><h2> Remove Background </h2></td>
-            </tr>
-            <tr>
-                <td><img src="{{url_for('static', filename=rutaImagen)}}" alt="{{ rutaImagen }}" height="400vh" /></td>
+                <td>
+                    <table>
+                        <tr>
+                            <td><h2> Remove Background </h2></td>
+                        </tr>
+                        <tr>
+                            <td><img src="{{url_for('static', filename=rutaImagen)}}" alt="{{ rutaImagen }}" height="400vh" /></td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="padding-left: 200px;">
+                    <h4>Chat de ayuda</h4>
+                    <iframe src='https://webchat.botframework.com/embed/removebackgroundbot?s=zHPHO_Gn-Pk.53QqqoMsDvSEnXswSQ1pSmLr2wLslksyXJbfQK1RnZs'
+                            style='min-width: 300px; width: 100%; min-height: 400px;'></iframe>
+                </td>
             </tr>
         </table>
         
